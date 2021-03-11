@@ -21,11 +21,6 @@ public class HomePage extends BasePage{
 		driver.navigate().to(BASE_URL+"2/konvertor.html");
 		return new ConvectorsPage(driver);
 	}
-	public LengthCalculatorPage navigateToLengthCalculatorPage() {
-		
-		driver.navigate().to(BASE_URL+"1/merki_daljina.html");
-		driver.manage().window().maximize();
-		return new LengthCalculatorPage(driver);
-	}
+	
 
 }

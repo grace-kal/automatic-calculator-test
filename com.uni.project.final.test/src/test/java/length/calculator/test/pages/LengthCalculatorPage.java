@@ -34,16 +34,24 @@ public class LengthCalculatorPage extends ConvectorsPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void  fillSuma(String sum) {
-		suma.sendKeys(sum);
+	public String getAlertText(){
+		String alert=driver.switchTo().alert().getText();
+		driver.switchTo().alert().accept();
+		return alert;
 	}
-	public void  setFromMeasure(String measureTextFrom) {
+	public LengthCalculatorPage  fillSuma(String sum) {
+		suma.sendKeys(sum);
+		return this;
+	}
+	public LengthCalculatorPage  setFromMeasure(String measureTextFrom) {
 		Select measure= new Select(from);
 	    measure.selectByVisibleText(measureTextFrom);
+	    return this;
 	}
-	public void  setToMeasure(String measureTextTo) {
+	public LengthCalculatorPage  setToMeasure(String measureTextTo) {
 		Select measure= new Select(to);
 	    measure.selectByVisibleText(measureTextTo);
+	    return this;
 	}
 	public LengthCalculatorPage  clickCalculate() {
 		calculate.click();
@@ -59,7 +67,7 @@ public class LengthCalculatorPage extends ConvectorsPage {
 		return result.getCssValue("display");
 	}
 
-	public void calculateResult(String inputSuma, String measureFrom, String measureTo) throws InterruptedException {
+	public LengthCalculatorPage calculateResult(String inputSuma, String measureFrom, String measureTo) throws InterruptedException {
 		fillSuma(inputSuma);
 		sleep(500);
 		setFromMeasure(measureFrom);
@@ -68,12 +76,18 @@ public class LengthCalculatorPage extends ConvectorsPage {
 		sleep(500);
 		clickCalculate();
 		sleep(500);
-	}
-	
-	public LengthCalculatorPage isOnLengthCalculatorPage() {
-		driver.findElement(By.xpath("//p[@style='text-transform: uppercase;margin-bottom:10px;']"));
+		
 		return this;
 	}
+	
+//	public LengthCalculatorPage isOnLengthCalculatorPage() {
+//		try {
+//			driver.findElement(By.xpath("//div[@id='cleft']//p[contains(text(),\'Калкулатор - преобразуване на мерни единици за дължина\")]"));
+//		}catch(Exception e) {
+//			fail("Not on page");
+//		}
+//		return this;
+//	}
 
 	
 	

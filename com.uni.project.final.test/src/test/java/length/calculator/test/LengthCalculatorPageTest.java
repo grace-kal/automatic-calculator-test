@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.seljup.SeleniumExtension;
+import length.calculator.test.pages.ConvectorsPage;
 import length.calculator.test.pages.HomePage;
 import length.calculator.test.pages.LengthCalculatorPage;
 
@@ -24,22 +25,16 @@ public class LengthCalculatorPageTest {
 		String to="Километър (km)";
 		String expectedResult="1 Миля (mi) = 1.61 km";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
-		sleep(1000);
 		String checkInput=automateLengthCalculator.checkInputSuma();
 		assertEquals("1", checkInput);
 		sleep(1000);
-
 		String finalResult=automateLengthCalculator.getResult();
 		assertEquals(expectedResult, finalResult);
 	    sleep(1000);
-		
-		
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
+
 	}
 	@Test
 	public void failure_FromMiToKmTest_Zero(ChromeDriver driver) throws InterruptedException {
@@ -49,24 +44,22 @@ public class LengthCalculatorPageTest {
 		String to="Километър (km)";
 		String expectedAlertMessage="Моля, въведете стойност за преобразуване!";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
 		sleep(1000);
 		
-
-		String alertMessage= driver.switchTo().alert().getText();
-	    assertEquals(expectedAlertMessage, alertMessage);
-	    sleep(1000);
+//		String alertMessage=automateLengthCalculator.getAlertText();
+//	    assertEquals(expectedAlertMessage, alertMessage);
+//	    sleep(1000);
+		String alertMessage=driver.switchTo().alert().getText();
+		assertEquals(expectedAlertMessage, alertMessage);
 		driver.switchTo().alert().accept();
-		sleep(1000);
 		
 		String resultDisplay=automateLengthCalculator.getResultDisplayValue();
 	    assertEquals("none", resultDisplay);
 	    sleep(1000);
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
+
 	}
 	@Test
 	public void failure_FromMiToKmTest_Null(ChromeDriver driver) throws InterruptedException {
@@ -76,24 +69,21 @@ public class LengthCalculatorPageTest {
 		String to="Километър (km)";
 		String expectedAlertMessage="Моля, въведете стойност за преобразуване!";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
 		sleep(1000);
 		
-
-		String alertMessage= driver.switchTo().alert().getText();
-	    assertEquals(expectedAlertMessage, alertMessage);
-	    sleep(1000);
+//		String alertMessage=automateLengthCalculator.getAlertText();
+//	    assertEquals(expectedAlertMessage, alertMessage);
+//	    sleep(1000);
+		String alertMessage=driver.switchTo().alert().getText();
+		assertEquals(expectedAlertMessage, alertMessage);
 		driver.switchTo().alert().accept();
-		sleep(1000);
 		
 		String resultDisplay=automateLengthCalculator.getResultDisplayValue();
 	    assertEquals("none", resultDisplay);
 	    sleep(1000);
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
 	}
 	@Test
 	public void success_FromKmToMiTest(ChromeDriver driver) throws InterruptedException {
@@ -103,10 +93,10 @@ public class LengthCalculatorPageTest {
 		String to="Миля (mi)";
 		String expectedResult="1 Километър (km) = 0.62 Миля (mi)";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
+		
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
-		sleep(1000);
 		String checkInput=automateLengthCalculator.checkInputSuma();
 		assertEquals("1", checkInput);
 		sleep(1000);
@@ -114,11 +104,6 @@ public class LengthCalculatorPageTest {
 		String finalResult=automateLengthCalculator.getResult();
 		assertEquals(expectedResult, finalResult);
 	    sleep(1000);
-		
-		
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
 	}
 	@Test
 	public void failure_FromKmToMiTest_Zero(ChromeDriver driver) throws InterruptedException {
@@ -128,24 +113,23 @@ public class LengthCalculatorPageTest {
 		String to="Миля (mi)";
 		String expectedAlertMessage="Моля, въведете стойност за преобразуване!";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
+		
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
 		sleep(1000);
 		
 
-		String alertMessage= driver.switchTo().alert().getText();
-	    assertEquals(expectedAlertMessage, alertMessage);
-	    sleep(1000);
+//		String alertMessage=automateLengthCalculator.getAlertText();
+//	    assertEquals(expectedAlertMessage, alertMessage);
+//	    sleep(1000);
+		String alertMessage=driver.switchTo().alert().getText();
+		assertEquals(expectedAlertMessage, alertMessage);
 		driver.switchTo().alert().accept();
-		sleep(1000);
 		
 		String resultDisplay=automateLengthCalculator.getResultDisplayValue();
 	    assertEquals("none", resultDisplay);
 	    sleep(1000);
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
 	}
 	@Test
 	public void failure_FromKmToMiTest_Null(ChromeDriver driver) throws InterruptedException {
@@ -155,24 +139,22 @@ public class LengthCalculatorPageTest {
 		String to="Миля (mi)";
 		String expectedAlertMessage="Моля, въведете стойност за преобразуване!";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
+		
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
 		sleep(1000);
-		
 
-		String alertMessage= driver.switchTo().alert().getText();
-	    assertEquals(expectedAlertMessage, alertMessage);
-	    sleep(1000);
+//		String alertMessage=automateLengthCalculator.getAlertText();
+//	    assertEquals(expectedAlertMessage, alertMessage);
+//	    sleep(1000);
+		String alertMessage=driver.switchTo().alert().getText();
+		assertEquals(expectedAlertMessage, alertMessage);
 		driver.switchTo().alert().accept();
-		sleep(1000);
 		
 		String resultDisplay=automateLengthCalculator.getResultDisplayValue();
 	    assertEquals("none", resultDisplay);
 	    sleep(1000);
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
 	}
 	
 	@Test
@@ -184,22 +166,17 @@ public class LengthCalculatorPageTest {
 		String to="Миля (mi)";
 		String expectedResult="1 Километър (km) = 0.62 Миля (mi)";
 
-		LengthCalculatorPage automateLengthCalculator =  new HomePage(driver).navigateToLengthCalculatorPage();
-		sleep(1000);
+		LengthCalculatorPage automateLengthCalculator =  new ConvectorsPage(driver)
+				.navigateToLengthCalculator();
+		
 		automateLengthCalculator.calculateResult(inputSuma, from, to);
-		sleep(1000);
 		String checkInput=automateLengthCalculator.checkInputSuma();
 		assertEquals("1", checkInput);
-		sleep(1000);
 
 		String finalResult=automateLengthCalculator.getResult();
 		assertEquals(expectedResult, finalResult);
 	    sleep(1000);
 		
-		
-		
-	    System.out.println(driver.getCurrentUrl());
-	    sleep(2000);
 	}
 	
 }

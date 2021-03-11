@@ -19,6 +19,7 @@ private WebDriver driver;
 	
 	public LengthCalculatorPage navigateToLengthCalculator() {
 		driver.navigate().to(BASE_URL+"1/merki_daljina.html");
+		driver.manage().window().maximize();
 		return new LengthCalculatorPage(driver);
 	}
 }
